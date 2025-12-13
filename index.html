@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discover Ukraine | Головна</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page">
+    <header class="header" id="header">
+      <div class="container header__container">
+        <a href="index.html" class="header__logo">Discover<span>UA</span></a>
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li>
+              <a href="index.html" class="nav__link nav__link--active"
+                >Головна</a
+              >
+            </li>
+            <li><a href="tours.html" class="nav__link">Всі Тури</a></li>
+            <li><a href="wishlist.html" class="nav__link">Обране</a></li>
+            <li><a href="info.html" class="nav__link">Інфо</a></li>
+            <li><a href="contacts.html" class="nav__link">Контакти</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <button class="theme-btn" id="theme-toggle" title="Змінити тему">
+            <span>🌙</span>
+          </button>
+          <a href="wishlist.html" class="wishlist-link"
+            >♥ <span class="badge" id="wishlist-count">0</span></a
+          >
+          <button class="burger" id="burger" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="hero">
+        <div class="hero__content">
+          <h1 class="hero__title">Відкрий для себе Україну</h1>
+          <p class="hero__desc">
+            Авторські тури, незвідані стежки та емоції на все життя.
+          </p>
+          <a href="tours.html" class="btn">Обрати подорож</a>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <h2 class="section__title">Що кажуть наші мандрівники</h2>
+          <div class="slider-wrapper">
+            <button class="slider-btn prev">❮</button>
+            <div class="slider-track" id="slider-track"></div>
+            <button class="slider-btn next">❯</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <h3>DiscoverUA</h3>
+          <p>© 2025 Student Project</p>
+        </div>
+        <div>
+          <h3>Підписка</h3>
+          <form id="sub-form">
+            <input
+              type="email"
+              name="sub_email"
+              placeholder="Ваш Email"
+              required
+            />
+            <button class="btn" style="margin-top: 10px">OK</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discover Ukraine | Про нас</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page">
+    <header class="header" id="header">
+      <div class="container header__container">
+        <a href="index.html" class="header__logo">Discover<span>UA</span></a>
+        <nav class="header__nav nav" id="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="index.html" class="nav__link">Головна</a>
+            </li>
+            <li class="nav__item">
+              <a href="tours.html" class="nav__link">Всі Тури</a>
+            </li>
+            <li class="nav__item">
+              <a href="about.html" class="nav__link nav__link--active"
+                >Про нас</a
+              >
+            </li>
+            <li class="nav__item">
+              <a href="contacts.html" class="nav__link">Контакти</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <button class="wishlist-btn">
+            ♥ <span class="wishlist-btn__count" id="wishlist-count">0</span>
+          </button>
+          <button class="burger" id="burger">
+            <span class="burger__line"></span><span class="burger__line"></span
+            ><span class="burger__line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="section about">
+        <div class="container">
+          <h1 class="section__title">Про команду DiscoverUA</h1>
+          <div
+            class="about__content"
+            style="text-align: center; max-width: 800px; margin: 0 auto 50px"
+          >
+            <p>
+              Ми — команда ентузіастів, які закохані в Україну. Наша місія —
+              показати красу рідного краю кожному. Працюємо з 2020 року і вже
+              організували понад 500 турів.
+            </p>
+          </div>
+
+          <h2 class="section__title">Наша команда</h2>
+          <div class="team__grid">
+            <div class="team-card">
+              <div class="team-card__img" style="background-color: #ddd"></div>
+              <h3>Марія Іваненко</h3>
+              <p>Головний гід</p>
+            </div>
+            <div class="team-card">
+              <div class="team-card__img" style="background-color: #ddd"></div>
+              <h3>Петро Петренко</h3>
+              <p>Логіст</p>
+            </div>
+            <div class="team-card">
+              <div class="team-card__img" style="background-color: #ddd"></div>
+              <h3>Анна Сидоренко</h3>
+              <p>Менеджер</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__container">
+        <p class="footer__text">
+          &copy; 2025 Discover Ukraine. Student Project.
+        </p>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

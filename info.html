@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Інформація</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page">
+    <header class="header">
+      <div class="container header__container">
+        <a href="index.html" class="header__logo">Discover<span>UA</span></a>
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Головна</a></li>
+            <li><a href="tours.html" class="nav__link">Всі Тури</a></li>
+            <li><a href="wishlist.html" class="nav__link">Обране</a></li>
+            <li>
+              <a href="info.html" class="nav__link nav__link--active">Інфо</a>
+            </li>
+            <li><a href="contacts.html" class="nav__link">Напишіть нам</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <button class="theme-btn" id="theme-toggle">🌙</button>
+          <a href="wishlist.html" class="wishlist-link"
+            >♥ <span class="badge" id="wishlist-count">0</span></a
+          >
+          <button class="burger" id="burger">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="section">
+        <div class="container">
+          <h1 class="section__title">Корисна інформація</h1>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h2>Часті питання</h2>
+              <div class="accordion">
+                <div class="accordion__item">
+                  <button class="accordion__header">
+                    Як відбувається оплата?
+                    <span class="accordion__icon">+</span>
+                  </button>
+                  <div class="accordion__content">
+                    <p>
+                      Ви бронюєте місце на сайті безкоштовно. Наш менеджер
+                      зв'яжеться з вами для уточнення деталей. Повна оплата
+                      здійснюється на карту за 3 дні до виїзду або готівкою в
+                      автобусі.
+                    </p>
+                  </div>
+                </div>
+                <div class="accordion__item">
+                  <button class="accordion__header">
+                    Чи входить харчування?
+                    <span class="accordion__icon">+</span>
+                  </button>
+                  <div class="accordion__content">
+                    <p>
+                      У більшість турів включені сніданки в готелях. Обіди та
+                      вечері оплачуються додатково (ми зупиняємось у перевірених
+                      колоритних закладах).
+                    </p>
+                  </div>
+                </div>
+                <div class="accordion__item">
+                  <button class="accordion__header">
+                    Що робити у випадку скасування?
+                    <span class="accordion__icon">+</span>
+                  </button>
+                  <div class="accordion__content">
+                    <p>
+                      Якщо ви повідомляєте про скасування за 7 днів до поїздки —
+                      ми повертаємо 100% передплати. Менше ніж за 3 дні кошти не
+                      повертаються, але можна перенести поїздку на іншу дату.
+                    </p>
+                  </div>
+                </div>
+                <div class="accordion__item">
+                  <button class="accordion__header">
+                    Чи є знижки для дітей?
+                    <span class="accordion__icon">+</span>
+                  </button>
+                  <div class="accordion__content">
+                    <p>
+                      Так, дітям до 12 років знижка 20%. Діти до 5 років без
+                      окремого місця в автобусі їдуть безкоштовно.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <h2>Що взяти з собою?</h2>
+              <ul class="checklist">
+                <li>
+                  <label><input type="checkbox" /> Паспорт (обов'язково)</label>
+                </li>
+                <li>
+                  <label
+                    ><input type="checkbox" /> Зручне взуття для ходьби</label
+                  >
+                </li>
+                <li>
+                  <label><input type="checkbox" /> Power Bank та зарядку</label>
+                </li>
+                <li>
+                  <label><input type="checkbox" /> Особисту аптечку</label>
+                </li>
+                <li>
+                  <label
+                    ><input type="checkbox" /> Дощовик або парасольку</label
+                  >
+                </li>
+                <li>
+                  <label
+                    ><input type="checkbox" /> Готівку (в горах термінали
+                    рідкість)</label
+                  >
+                </li>
+                <li>
+                  <label><input type="checkbox" /> Пляшку води та снеки</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <h3>DiscoverUA</h3>
+          <p>© 2025</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
