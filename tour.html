@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Деталі туру</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page">
+    <header class="header" id="header">
+      <div class="container header__container">
+        <a href="index.html" class="header__logo">Discover<span>UA</span></a>
+        <nav class="nav" id="nav">
+          <ul class="nav__list">
+            <li><a href="index.html" class="nav__link">Головна</a></li>
+            <li>
+              <a href="tours.html" class="nav__link nav__link--active"
+                >Всі Тури</a
+              >
+            </li>
+            <li><a href="wishlist.html" class="nav__link">Обране</a></li>
+            <li><a href="info.html" class="nav__link">Інфо</a></li>
+            <li><a href="contacts.html" class="nav__link">Контакти</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions">
+          <button class="theme-btn" id="theme-toggle" title="Змінити тему">
+            <span>🌙</span>
+          </button>
+          <a href="wishlist.html" class="wishlist-link"
+            >♥ <span class="badge" id="wishlist-count">0</span></a
+          >
+          <button class="burger" id="burger">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="section">
+        <div class="container">
+          <div style="margin-bottom: 20px">
+            <a
+              href="tours.html"
+              class="btn btn--outline"
+              style="padding: 8px 20px"
+              >← Назад</a
+            >
+          </div>
+
+          <div id="tour-detail">Завантаження...</div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="booking-modal">
+      <div class="modal">
+        <button class="modal__close" id="modal-close">&times;</button>
+        <h2>Бронювання туру</h2>
+        <p
+          id="modal-tour-title"
+          style="color: var(--primary); font-weight: 600; margin-bottom: 15px"
+        ></p>
+
+        <form id="booking-form">
+          <input
+            type="text"
+            name="username"
+            class="form__input"
+            placeholder="Ваше ім'я"
+            required
+            pattern="[A-Za-zА-Яа-яІіЇїЄєҐґ'\s]+"
+            title="Ім'я має містити лише літери"
+            style="width: 100%; margin-bottom: 10px"
+          />
+
+          <input
+            type="tel"
+            name="phone"
+            class="form__input"
+            placeholder="Телефон (+380...)"
+            required
+            pattern="^\+?[0-9\s\-\(\)]{10,20}$"
+            title="Введіть коректний номер телефону (мінімум 10 цифр)"
+            style="width: 100%; margin-bottom: 10px"
+          />
+
+          <button type="submit" class="btn" style="width: 100%">
+            Надіслати
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <h3>DiscoverUA</h3>
+          <p>© 2025</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
