@@ -1,4 +1,4 @@
-import { toursData } from "./data/tours.js";
+import { toursData, findTourById } from "./data/tours.js"; // <-- ВАЖЛИВО: Оновлений імпорт
 import { reviewsData } from "./data/reviews.js";
 import { Wishlist } from "./modules/wishlist.js";
 import { FilterService } from "./modules/filters.js";
@@ -8,13 +8,60 @@ import { TestimonialSlider } from "./modules/slider.js";
 import { Accordion } from "./modules/accordion.js";
 import { createCard, renderReviews } from "./modules/render.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  // СЛАЙДЕР ВІДГУКІВ
-  const sliderTrack = document.getElementById("slider-track");
-  if (sliderTrack) renderReviews(sliderTrack, reviewsData);
+// --- ЛОГІКА АСИНХРОННОГО ЕКСПОРТУ З ПРОМІСАМИ ---
 
-  // ІНІЦІАЛІЗАЦІЯ МОДУЛІВ
-  const wishlist = new Wishlist();
+/**
+ * Ініціалізує логіку експорту Wishlist у текстовий файл.
+ * Ця функція демонструє використання Промісів (.then/.catch/.finally).
+ * @param {Wishlist} wishlistInstance
+ */
+function initAsyncExport(wishlistInstance) {
+  const exportTxtBtn = document.getElementById("export-wishlist-txt-btn");
+
+  if (exportTxtBtn) {
+    exportTxtBtn.addEventListener("click", () => {
+      // Демонстрація PENDING: візуальний зворотний зв'язок
+      const originalText = exportTxtBtn.textContent;
+      exportTxtBtn.textContent = "Формування...";
+      exportTxtBtn.disabled = true;
+
+      // Виклик методу, який повертає Проміс
+      wishlistInstance
+        .exportToTextFile()
+        .then((blob) => {
+          // FULFILLED: Створення тимчасового посилання та завантаження
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "wishlist_discoverua.txt";
+
+          document.body.appendChild(a);
+          a.click();
+
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          alert('Список "Обраного" успішно експортовано!');
+        })
+        .catch((error) => {
+          // REJECTED: Обробка помилки (наприклад, порожній список)
+          alert(`Помилка експорту: ${error.message}`);
+          console.error("Експорт відхилено:", error);
+        })
+        .finally(() => {
+          // FINALLY: Відновлення кнопки, незалежно від результату
+          exportTxtBtn.textContent = originalText;
+          exportTxtBtn.disabled = false;
+        });
+    });
+  }
+}
+
+// --- ОСНОВНА ЛОГІКА ЗАПУСКУ ---
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. ІНІЦІАЛІЗАЦІЯ МОДУЛІВ
+  // ВАЖЛИВО: Передаємо findTourById у конструктор Wishlist
+  const wishlist = new Wishlist(findTourById);
   const filters = new FilterService();
   const modal = new BookingModal();
   new ThemeSwitcher();
@@ -22,7 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
   new Accordion();
   modal.init();
 
-  // КНОПКА "ВГОРУ"
+  // СЛАЙДЕР ВІДГУКІВ
+  const sliderTrack = document.getElementById("slider-track");
+  if (sliderTrack) renderReviews(sliderTrack, reviewsData);
+
+  // КНОПКА "ВГОРУ" та HEADER SCROLL
   const scrollTopBtn = document.createElement("button");
   scrollTopBtn.className = "scroll-top";
   scrollTopBtn.innerHTML = "&#8679;";
@@ -54,8 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // КАТАЛОГ
+  // КАТАЛОГ (Тільки на сторінках без wishlist.html)
   const container = document.getElementById("tours-container");
+  const isWishlistPage = window.location.pathname.includes("wishlist.html");
+
   const updateView = () => {
     if (!container) return;
     const data = filters.process(toursData);
@@ -64,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       : '<p style="grid-column:1/-1;text-align:center">Нічого не знайдено</p>';
   };
 
-  if (container && !window.location.pathname.includes("wishlist.html")) {
+  if (container && !isWishlistPage) {
     updateView();
     container.onclick = (e) => {
       const btn = e.target.closest(".card__wishlist");
@@ -74,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.toggle("active", isLiked);
       }
     };
+    // ... логіка фільтрів
     document.querySelectorAll(".filter-btn").forEach((btn) => {
       btn.onclick = () => {
         document
@@ -99,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // СТОРІНКА ОБРАНОГО
-  if (window.location.pathname.includes("wishlist.html") && container) {
+  if (isWishlistPage && container) {
     const liked = toursData.filter((t) => wishlist.has(t.id));
     container.innerHTML = liked.length
       ? liked.map((t) => createCard(t, true)).join("")
@@ -109,12 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (btn) {
         e.preventDefault();
         wishlist.toggle(btn.dataset.id);
+        // Після видалення на сторінці Обраного, картка зникає
         btn.closest(".card").remove();
       }
     };
+
+    // ВАЖЛИВО: Ініціалізуємо логіку експорту лише на сторінці Обраного
+    initAsyncExport(wishlist);
   }
 
-  // ДЕТАЛІ ТУРУ (З УКРАЇНСЬКОЮ ДАТОЮ)
+  // ДЕТАЛІ ТУРУ
   const detail = document.getElementById("tour-detail");
   if (detail) {
     const id = new URLSearchParams(window.location.search).get("id");
@@ -124,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tour.dates && tour.dates.length
           ? tour.dates
               .map((d) => {
-                // Перетворення YYYY-MM-DD -> DD.MM.YYYY
                 const ukrDate = d.split("-").reverse().join(".");
                 return `<span class="date-badge">📅 ${ukrDate}</span>`;
               })
